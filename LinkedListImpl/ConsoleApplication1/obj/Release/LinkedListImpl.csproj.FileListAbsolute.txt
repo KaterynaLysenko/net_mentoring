@@ -1,0 +1,5 @@
+\\Mac\Home\Documents\Visual Studio 2015\Projects\LinkedListImpl\ConsoleApplication1\bin\Release\ConsoleApplication1.exe.config
+\\Mac\Home\Documents\Visual Studio 2015\Projects\LinkedListImpl\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\LinkedListImpl\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\LinkedListImpl\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\LinkedListImpl\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb
