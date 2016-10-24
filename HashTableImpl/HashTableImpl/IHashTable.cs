@@ -1,4 +1,4 @@
-﻿namespace HashTableImpl
+﻿namespace Epam.Collections
 {
     interface IHashTable
     {

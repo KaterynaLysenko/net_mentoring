@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Epam.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using HashTableImpl;
 
 namespace UnitTestProject2
 {
@@ -107,6 +108,15 @@ namespace UnitTestProject2
             MyHashTable hashTable = new MyHashTable();
             hashTable.Add("kate", "lysenko");
             hashTable.Add("kate", "lysenko");
+        }
+
+        [TestMethod]
+        public void AddingValueUsingKeyShouldGetThatValueThen()
+        {
+            const string expectedValue = "tkachenko";
+            var hashTable = new MyHashTable();
+            hashTable["igor"] = expectedValue;
+            Assert.AreEqual(expectedValue, hashTable["igor"]);
         }
     }
 }

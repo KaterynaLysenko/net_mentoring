@@ -1,11 +1,11 @@
-﻿namespace HashTableImpl
+﻿namespace Epam.Collections
 {
     internal class HashTableNode
     {
-        public int hash { get; set; }
-        public object key { get; set; }
-        public object value { get; set; }
-        public HashTableNode next { get; set; }
+        public int Hash { get; set; }
+        public object Key { get; set; }
+        public object Value { get; set; }
+        public HashTableNode Next { get; set; }
     }
 
 }

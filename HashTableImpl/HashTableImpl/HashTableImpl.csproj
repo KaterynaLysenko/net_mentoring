@@ -7,8 +7,8 @@
     <ProjectGuid>{CDBE0D05-DFD6-414C-BC43-CA23804D1639}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HashTableImpl</RootNamespace>
-    <AssemblyName>HashTableImpl</AssemblyName>
+    <RootNamespace>Epam.Collections</RootNamespace>
+    <AssemblyName>Epam.Collections</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

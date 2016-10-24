@@ -1,58 +1,64 @@
 ﻿using System;
 
-namespace HashTableImpl
+namespace Epam.Collections
 {
     public class MyHashTable : IHashTable
     {
-        private static readonly int initialCapacity = 100;
+        private const int initialCapacity = 100;
 
         private int capacity = initialCapacity;
-        private HashTableNode[] hashTable;
+        private HashTableNode[] buckets;
 
         public MyHashTable(int capacity)
         {
-            hashTable = new HashTableNode[capacity];
+            buckets = new HashTableNode[capacity];
         }
 
         public MyHashTable()
         {
-            hashTable = new HashTableNode[capacity];
+            buckets = new HashTableNode[capacity];
         }
 
+        private int Compress(int hasCode)
+        {
+            return Math.Abs(hasCode % capacity); ;
+        }
        
         private int Hash(object key)
         {
-            return Math.Abs(key.GetHashCode() % capacity);
+            return Compress(key.GetHashCode());
         }
 
         public object this[object key]
         {
             get
             {
-                return FindEllement(key).value;
+                return FindEllement(key).Value;
             }
 
             set
             {
-                FindEllement(key).value = value;
+                FindEllement(key).Value = value;
             }
         }
 
         public bool Contains(object key)
         {
             int hashOfKey = Hash(key);
-            if (hashTable[hashOfKey] == null)
+            if (buckets[hashOfKey] == null)
             {
                 return false;
             }
-            HashTableNode current = hashTable[hashOfKey];
+
+            //TODO: code dupl.
+            HashTableNode current = buckets[hashOfKey];
             do
             {
-                if (current.key.Equals(key))
+                if (current.Key.Equals(key))
                 {
                     return true;
                 }
-                current = current.next;
+                current = current.Next;
             } while (current != null);
 
             return false;
@@ -66,32 +72,34 @@ namespace HashTableImpl
                 throw new SystemException();
             }
             HashTableNode newNode = new HashTableNode();
-            newNode.hash = hashOfKey;
-            newNode.key = key;
-            newNode.value = value;
-            HashTableNode current = hashTable[hashOfKey];
+            newNode.Hash = hashOfKey;
+            newNode.Key = key;
+            newNode.Value = value;
+            HashTableNode current = buckets[hashOfKey];
             if (current == null)
             {
-                hashTable[hashOfKey] = newNode;
+                buckets[hashOfKey] = newNode;
             }
             else
             {
-                while (current.next != null)
+                //TODO: code dupl.?
+                while (current.Next != null)
                 {
-                    current = current.next;
+                    current = current.Next;
                 }
-                current.next = newNode;
+                current.Next = newNode;
             }
         }
         public bool TryGet(object key, out object value)
         {
+            //TODO: to call for find element
             if (!Contains(key))
             {
                 value = null;
                 return false;
             }
             HashTableNode current = FindEllement(key);
-            value = current.value;
+            value = current.Value;
             return true;
         }
 
@@ -99,17 +107,22 @@ namespace HashTableImpl
         {
             if (!Contains(key))
             {
+                //custom exception!
                 throw new SystemException();
             }
+
+
             int hashOfKey = Hash(key);
-            HashTableNode current = hashTable[hashOfKey];
+            HashTableNode current = buckets[hashOfKey];
+
+            //TODO: code duplication
             do
             {
-                if (current.key.Equals(key))
+                if (current.Key.Equals(key))
                 {
                     return current;
                 }
-                current = current.next;
+                current = current.Next;
             } while (current != null);
 
             return current;

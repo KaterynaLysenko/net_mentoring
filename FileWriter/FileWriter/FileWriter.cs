@@ -100,6 +100,11 @@ namespace Convestudo.Unmanaged
             System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
             return new string(chars);
         }
+
+        ~FileWriter()
+        {
+            Dispose(false);
+        }
         public void Dispose()
         {
             Dispose(true);
@@ -108,10 +113,13 @@ namespace Convestudo.Unmanaged
 
         protected virtual void Dispose(bool disposing)
         {
+            CloseHandle(_fileHandle);
+
             if (disposing)
             {
-               CloseHandle(_fileHandle);
+                //streamReader.dISPOSE();
             }
+
         }
     }
 }
