@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HashTableImpl
 {
@@ -23,14 +19,7 @@ namespace HashTableImpl
             hashTable = new HashTableNode[capacity];
         }
 
-        public class HashTableNode
-        {
-            public int hash;
-            public object key;
-            public object value;
-            public HashTableNode next;
-        }
-
+       
         private int Hash(object key)
         {
             return Math.Abs(key.GetHashCode() % capacity);

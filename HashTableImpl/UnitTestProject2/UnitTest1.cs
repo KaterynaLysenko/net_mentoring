@@ -8,7 +8,7 @@ namespace UnitTestProject2
     public class UnitTest1
     {
         [TestMethod]
-        public void TestContainsWhenOneEllement()
+        public void TestContainsIfOnlyOneEllementPresent()
         {
             MyHashTable hashTable = new MyHashTable();
             hashTable.Add("kate", "lysenko");
@@ -99,5 +99,15 @@ namespace UnitTestProject2
             hashTable["maryna"] = "gybelynda";
             Assert.AreEqual("gybelynda", hashTable["maryna"]);
         }
+
+        [ExpectedException(typeof(SystemException))]
+        [TestMethod]
+        public void GivenExceptionIfAddElementWhithTheSameKey()
+        {
+            MyHashTable hashTable = new MyHashTable();
+            hashTable.Add("kate", "lysenko");
+            hashTable.Add("kate", "lysenko");
+        }
     }
 }
+  
