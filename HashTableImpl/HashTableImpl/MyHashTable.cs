@@ -38,7 +38,15 @@ namespace Epam.Collections
 
             set
             {
-                FindEllement(key).Value = value;
+                if (!Contains(key))
+                {
+                    Add(key, value);
+                }
+                else
+                {
+                    FindEllement(key).Value = value;
+                }
+                
             }
         }
 
@@ -50,18 +58,8 @@ namespace Epam.Collections
                 return false;
             }
 
-            //TODO: code dupl.
-            HashTableNode current = buckets[hashOfKey];
-            do
-            {
-                if (current.Key.Equals(key))
-                {
-                    return true;
-                }
-                current = current.Next;
-            } while (current != null);
-
-            return false;
+            // + TODO: code dupl.
+            return GetNodeByKey(key) != null;
         }
 
         public void Add(object key, object value)
@@ -69,7 +67,7 @@ namespace Epam.Collections
             int hashOfKey = Hash(key);
             if (Contains(key))
             {
-                throw new SystemException();
+                throw new ElementAlreadyPresentException();
             }
             HashTableNode newNode = new HashTableNode();
             newNode.Hash = hashOfKey;
@@ -82,7 +80,7 @@ namespace Epam.Collections
             }
             else
             {
-                //TODO: code dupl.?
+                // - TODO: code dupl.?
                 while (current.Next != null)
                 {
                     current = current.Next;
@@ -92,7 +90,6 @@ namespace Epam.Collections
         }
         public bool TryGet(object key, out object value)
         {
-            //TODO: to call for find element
             if (!Contains(key))
             {
                 value = null;
@@ -101,21 +98,35 @@ namespace Epam.Collections
             HashTableNode current = FindEllement(key);
             value = current.Value;
             return true;
+            /*
+            try
+            {
+                value = FindEllement(key);
+            }
+            catch (ElementNotPresentExeption e) {
+                value = null;
+                return false;
+            }
+            return true;
+            */
         }
 
         private HashTableNode FindEllement(object key)
         {
             if (!Contains(key))
             {
-                //custom exception!
-                throw new SystemException();
+                throw new ElementNotPresentExeption();
             }
 
+            // + TODO: code duplication
+            return GetNodeByKey(key);
+        }
 
+        private HashTableNode GetNodeByKey(object key)
+        {
             int hashOfKey = Hash(key);
             HashTableNode current = buckets[hashOfKey];
 
-            //TODO: code duplication
             do
             {
                 if (current.Key.Equals(key))
@@ -127,6 +138,5 @@ namespace Epam.Collections
 
             return current;
         }
-
     }
 }

@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElementAlreadyPresentException.cs" />
+    <Compile Include="ElementNotPresentExeption.cs" />
     <Compile Include="HashTableNode.cs" />
     <Compile Include="IHashTable.cs" />
     <Compile Include="MyHashTable.cs" />

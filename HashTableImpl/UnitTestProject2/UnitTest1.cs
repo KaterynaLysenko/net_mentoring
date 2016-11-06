@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Epam.Collections;
+﻿using Epam.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject2
@@ -101,13 +99,14 @@ namespace UnitTestProject2
             Assert.AreEqual("gybelynda", hashTable["maryna"]);
         }
 
-        [ExpectedException(typeof(SystemException))]
+        [ExpectedException(typeof(ElementAlreadyPresentException))]
         [TestMethod]
         public void GivenExceptionIfAddElementWhithTheSameKey()
-        {
+        {            
             MyHashTable hashTable = new MyHashTable();
             hashTable.Add("kate", "lysenko");
             hashTable.Add("kate", "lysenko");
+           
         }
 
         [TestMethod]
